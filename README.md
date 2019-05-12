@@ -1,2 +1,3 @@
 # pi-leibniz
-Calculate pi with leibniz formula
+
+ライプニッツの公式を使った円周率の計算
