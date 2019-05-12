@@ -2,6 +2,7 @@
 
 import time
 import numba
+import sys
 
 @numba.jit(nopython = True, parallel = True)
 def leibniz(n):
@@ -15,8 +16,16 @@ def leibniz(n):
 
 	return sum
 
-print(4 * leibniz(10))
 
-start = time.time()
-print(4 * leibniz(10 ** 8))
-print('time: {}s'.format(time.time() - start))
+if __name__ == '__main__':
+	if len(sys.argv) < 2:
+		print('Usage: {} NUMBER_OF_DIGITS'.format(sys.argv[0]))
+		sys.exit(-1)
+	
+	# JIT compile
+	leibniz(10)
+
+	# Do calculate
+	start = time.time()
+	print(4 * leibniz(10 ** int(sys.argv[1])))
+	print('calc time: {}s'.format(time.time() - start))
