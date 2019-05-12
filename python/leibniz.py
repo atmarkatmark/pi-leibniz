@@ -4,7 +4,9 @@ import time
 import numba
 import sys
 
-@numba.jit(nopython = True, parallel = True)
+times = 5
+
+@numba.jit(nopython = True, parallel = True, fastmath = True)
 def leibniz(n):
 	sum = 0
 
@@ -27,5 +29,6 @@ if __name__ == '__main__':
 
 	# Do calculate
 	start = time.time()
-	print(4 * leibniz(10 ** int(sys.argv[1])))
-	print('calc time: {}s'.format(time.time() - start))
+	for i in range(times):
+		print(4 * leibniz(10 ** int(sys.argv[1])))
+	print('calc time: {}s'.format((time.time() - start) / times))

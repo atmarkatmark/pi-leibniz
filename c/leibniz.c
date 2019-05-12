@@ -22,6 +22,7 @@ int main(int argc, char *argv[])
 {
 	clock_t start;
 	int digit = 1;
+	int times = 5;
 
 	/* 桁数が指定されているか確認 */
 	if (argc < 2)
@@ -35,8 +36,9 @@ int main(int argc, char *argv[])
 
 	/* Leibnizの公式を計算 */
 	start = clock();
-	printf("pi: %.12lf\n", 4 * leibniz((unsigned long long )pow(10, digit)));
-	printf("time: %.8lf\n", (clock() - start) / CLOCKS_PER_SEC);
+	for (int i = 0; i != times; ++i)
+		printf("pi: %.12lf\n", 4 * leibniz((unsigned long long )pow(10, digit)));
+	printf("time: %.2lf\n", (clock() - start) * 1.0 / CLOCKS_PER_SEC / times);
 	
 	return 0;
 }
